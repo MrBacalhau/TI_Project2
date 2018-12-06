@@ -1,7 +1,7 @@
-filename = 'EMG_norm.csv';
+filename = 'C:\Users\gon_f\OneDrive\Documentos\Uni\4ºano\TI\TP2\Data\EMG_norm.csv';
 data = csvread(filename)
 
-entropia(hist)
+%entropia(data)
 
 a = lpc(data,3);
 est_data = filter([0 -a(2:end)],1,data);
