@@ -7,6 +7,8 @@ alpha=unique(Y);
 h=hist(Y,alpha);
 ent=entropy(Y)
 
-linearpredictor(Y);
+%Entropia_lpc=linearpredictor(Y)
 
-adaptativelinear(Y)
+%Entropia_alpc=adaptativelinear(Y)
+
+Entropia_adpcm=adpcm(Y)
