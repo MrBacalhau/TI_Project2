@@ -1,16 +1,11 @@
 function [ ent_alc ] = adaptativelinear( Y )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
     min=4000;
-    max=4300;
-    time = 0:length(Y); % from 0 to 6 seconds
+    max=4300; 
     
     signal =transpose(Y);
     signal= con2seq(signal);
     Pi = signal(1:6);
     P = signal(6:end);
-    timex = time(6:end-1);
-    timex=timex(min:max);
     T = P;
     
     net = linearlayer(1:6,0.1);
@@ -18,8 +13,9 @@ function [ ent_alc ] = adaptativelinear( Y )
     [net,prd] = adapt(net,P,T,Pi);
     e = cell2mat(T)-cell2mat(prd);
     
-    ent_alc = entropy(e+cell2mat(prd));
-    
+    ent_alc=entropy(cell2mat(prd)+e)
+    ent_alc_prd = entropy(cell2mat(prd))
+    ent_alc_e = entropy(e)
     prd=cell2mat(prd);
     T=cell2mat(T);
 
