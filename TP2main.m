@@ -5,12 +5,20 @@ audiowrite(file,data, 250, 'BitsPerSample', 16);
 [Y, fs]=audioread(file);
 alpha=unique(Y);
 h=hist(Y,alpha);
-ent=entropia(h)
+ent=entropy(Y)
 
 %Entropia_lpc=linearpredictor(Y)
 
 %Entropia_alpc=adaptativelinear(Y)
 
-Entropia_adpcm=adpcm(Y)
+%Entropia_adpcm=adpcm(Y)
 
 %CELP_RUN(file);
+
+Entropia_dct = mydct(Y)
+
+Entropia_huff = HuffmanC(Y)
+
+Entropia_arth = Arithmetics(Y)
+
+
