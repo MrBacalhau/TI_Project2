@@ -13,9 +13,9 @@ function [ ent_alc ] = adaptativelinear( Y )
     [net,prd] = adapt(net,P,T,Pi);
     e = cell2mat(T)-cell2mat(prd);
     
-    ent_alc=entropy(cell2mat(prd)+e)
-    ent_alc_prd = entropy(cell2mat(prd))
-    ent_alc_e = entropy(e)
+    ent_alc=entropy(cell2mat(prd)+e);
+    ent_alc_prd = entropia(cell2mat(prd))
+    ent_alc_e = entropia(e)
     prd=cell2mat(prd);
     T=cell2mat(T);
 

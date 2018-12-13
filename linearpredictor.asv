@@ -7,10 +7,8 @@ function [ ent_lpc_prd ] = linearpredictor( Y )
     est = filter([0 -a(2:end)],1,Y);
     e = Y-est;
     %[acs,lags] = xcorr(e,'coeff');
-    ent_lpc_prd = entropia(est)
-    ent_lpc_e = entropia(e);
-    
-    
+    ent_lpc_prd = entropy(est)
+    ent_lpc_e = entropy(e);
 
     figure
     plot(min:max,Y(min:max),min:max,est(min:max),'--',min:max, e(min:max),'r'), grid
