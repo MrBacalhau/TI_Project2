@@ -30,4 +30,4 @@ end
 matrix=NewDec;
 matrix=reshape(matrix,m,n);
 matrix=matrix';
-arith_entropy = entropy(matrix);
+arith_entropy = entropia(matrix);
