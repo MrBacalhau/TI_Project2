@@ -1,4 +1,4 @@
-function [entropia] = entropia( Y);
+function [entropia] = entropia(Y);
     alpha=unique(Y);
     h=hist(Y,alpha);
     array = h / length(Y);
