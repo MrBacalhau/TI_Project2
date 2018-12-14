@@ -1,20 +1,23 @@
-function [ ent_lpc_prd ] = linearpredictor( Y )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-    min=4000;
-    max=4300;
-    a = lpc(Y,3);
+function [prd, err ] = linearpredictor( Y )
+    a = lpc(Y,2);
     est = filter([0 -a(2:end)],1,Y);
     e = Y-est;
-    %[acs,lags] = xcorr(e,'coeff');
-    ent_lpc_prd = entropy(est)
-    ent_lpc_e = entropy(e);
-
-    figure
-    plot(min:max,Y(min:max),min:max,est(min:max),'--',min:max, e(min:max),'r'), grid
-    title 'Original Signal vs. LPC Estimate'
-    xlabel 'Sample number', ylabel 'Amplitude'
-    legend('Original signal','LPC estimate', 'Error')
-
+    
+    file='datawave.wav';
+    audiowrite(file, est, 250, 'BitsPerSample', 16);
+    [prd, fs]=audioread(file);
+    delete 'datawave.wav';
+    e(e<-1)=-1;
+    file='datawave.wav';
+    audiowrite(file, e, 250, 'BitsPerSample', 16);
+    [err, fs]=audioread(file);
+    delete 'datawave.wav';
+    
+    sd_prd=length(unique(prd));
+    sd_err=length(unique(err));
+    ent_lpc_prd = entropia(prd);
+    ent_lpc_e = entropia(err);
+    
+    disp(sprintf('Linear Predictor\n\tentropia do sinal: %f \n\tamanho do dicionario do sinal: %f \n\tentropia do erro: %f \n\tentropia do sinal: %f', ent_lpc_prd, ent_lpc_e));
 end
 

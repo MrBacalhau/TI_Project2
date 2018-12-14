@@ -30,6 +30,6 @@ function [arith_entropy] = Arithmetics(matrix)
     matrix=NewDec;
     matrix=reshape(matrix,m,n);
     matrix=matrix';
+    disp(sprintf('Arithmeti
     arith_entropy = entropia(matrix);
-    disp(sprintf('\tArithmetics\n\tEntropia: %f',arith_entropy));
 end
