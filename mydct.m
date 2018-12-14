@@ -3,8 +3,8 @@ function [ ent_dct ] = mydct(Y)
 %   Detailed explanation goes here
 
 %read a file and convert it to a vector
-[funky, f] = audioread('datawave.wav');
-
+%[funky, f] = audioread('datawave.wav');
+funky=Y;
 %chosing a block size 
 windowSize = 8192;
 
@@ -58,7 +58,9 @@ specgram(funkyCompressed4), title('Compression Factor 4');
 subplot(4,1,4)
 specgram(funkyCompressed8), title('Compression Factor 8');
 
-ent_dct = entropia(funkyCompressed2);
+ent_dct2 = entropia(funkyCompressed2)
+ent_dct4 = entropia(funkyCompressed4)
+ent_dct8 = entropia(funkyCompressed8)
 %saving to wave files
 %audiowrite('funky2.wav',funkyCompressed2, 250, 'BitsPerSample', 16)
 %audiowrite('funky4.wav',funkyCompressed4, 250, 'BitsPerSample', 16)

@@ -11,8 +11,8 @@ disp(sprintf('entropia do sinal original: %f tamanho do dicionario do sinal orig
 figure
 plot(h), grid
 title 'Histograma do sinal original'
-pred=3;
-cod=3;
+pred=4;
+cod=0;
 %Linear Pridictor
 if(pred==0)
     [lpc_prd, lpc_err]=linearpredictor(Y);
@@ -25,6 +25,9 @@ if(pred==0)
     elseif(cod==2)
         %Discrite cuzinho transform
         mydct(lpc_err);
+    elseif(cod==3)
+        %ADPCM
+        adpcm(lpc_err);
     end
 elseif(pred==1)
     [alpc_prd, alpc_err]=adaptativelinear(Y);
@@ -50,8 +53,7 @@ elseif(pred==2)
         %Discrite cuzinho transform
         mydct(delta_err);
     end
-elseif(pred==3)
-    %ADPCM
-    adpcm(Y);
 end
+
+Entropia_adpcm=adpcm(Y)
 

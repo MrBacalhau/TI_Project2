@@ -18,15 +18,16 @@ comp = huffmanenco(sig,dict);
 % Decode the data. Verify that the decoded data matches the original data.
 dsig = huffmandeco(comp,dict);
 ent_huff = entropia(dsig);
-isequal(sig,dsig)
+iseq=isequal(sig,dsig);
 %%
 % Convert the original signal to binary, and determine its length.
-%%binarySig = de2bi(sig);
-%seqLen = numel(binarySig)
+binarySig = de2bi(sig);
+seqLen = numel(binarySig);
 %%
 % Convert the Huffman encoded signal and determine its length.
-%binaryComp = de2bi(comp);
-%encodedLen = numel(binaryComp)
+binaryComp = de2bi(comp);
+encodedLen = numel(binaryComp);
+disp(sprintf('\tHuffman\n\t\ttamanho original: %f\n\t\ttamanho codificado: %f', seqLen, encodedLen));
 %%
 % The Huffman encoded data required 224 bits, which is a 25% savings over
 % the uncoded data.
